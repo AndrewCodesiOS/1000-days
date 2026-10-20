@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c211e">
+  <meta name="description" content="Small steps. Big changes. A simple 1000-day personal growth tracker.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon.svg">
+  <link rel="stylesheet" href="./styles.css">
+  <title>1000 days</title>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">↗</div>
+      <div>
+        <p class="eyebrow">YOUR PERSONAL GROWTH JOURNEY</p>
+        <h1>1000 days</h1>
+      </div>
+      <button id="settingsBtn" class="icon-button" aria-label="Settings" title="Settings">⚙</button>
+    </header>
+
+    <section class="hero panel">
+      <div class="hero-copy">
+        <p class="eyebrow">SMALL STEPS. BIG CHANGES.</p>
+        <h2>Become who<br>you want to be.</h2>
+        <p class="muted">One day at a time. No perfection required.</p>
+      </div>
+      <div class="progress-wrap" aria-label="Progress toward 1000 successful days">
+        <svg class="progress-ring" viewBox="0 0 200 200" role="img" aria-label="Progress ring">
+          <circle class="ring-track" cx="100" cy="100" r="82"></circle>
+          <circle id="ringProgress" class="ring-progress" cx="100" cy="100" r="82"></circle>
+        </svg>
+        <div class="progress-center">
+          <strong id="progressPercent">0.0%</strong>
+          <span id="successCount">0 / 1000</span>
+          <small>successful days</small>
+        </div>
+      </div>
+      <div class="hero-bottom">
+        <div>
+          <span class="stat-label">CURRENT STREAK</span>
+          <strong id="streakCount">0 days</strong>
+        </div>
+        <div class="stat-divider"></div>
+        <div>
+          <span class="stat-label">PROJECTED JOURNEY</span>
+          <strong id="journeyLength">1000 days</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="checkin panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">DAILY CHECK-IN</p>
+          <h2 id="todayHeading">Today</h2>
+        </div>
+        <span id="todayDate" class="date-pill"></span>
+      </div>
+      <p class="muted" id="checkinPrompt">Did you show up for yourself today?</p>
+      <div class="choice-grid">
+        <button class="choice success" id="successBtn">
+          <span class="choice-symbol">✓</span>
+          <span class="choice-title">Successful</span>
+          <span class="choice-subtitle">+0.1% progress</span>
+        </button>
+        <button class="choice miss" id="missBtn">
+          <span class="choice-symbol">×</span>
+          <span class="choice-title">Not today</span>
+          <span class="choice-subtitle">Journey extends by 1 day</span>
+        </button>
+      </div>
+      <p id="statusMessage" class="status-message" aria-live="polite">Your day is waiting to be logged.</p>
+      <button id="undoBtn" class="text-button hidden">Change today’s check-in</button>
+    </section>
+
+    <section class="stats-grid">
+      <article class="mini-stat panel">
+        <span class="mini-icon">◎</span>
+        <span class="stat-label">SUCCESSFUL DAYS</span>
+        <strong id="statSuccess">0</strong>
+        <small>of 1000 needed</small>
+      </article>
+      <article class="mini-stat panel">
+        <span class="mini-icon">↗</span>
+        <span class="stat-label">DAYS TO GO</span>
+        <strong id="daysToGo">1000</strong>
+        <small>successful days remaining</small>
+      </article>
+      <article class="mini-stat panel">
+        <span class="mini-icon">＋</span>
+        <span class="stat-label">EXTRA DAYS</span>
+        <strong id="missCount">0</strong>
+        <small>added to your timeline</small>
+      </article>
+      <article class="mini-stat panel">
+        <span class="mini-icon">▦</span>
+        <span class="stat-label">TOTAL JOURNEY</span>
+        <strong id="totalJourney">1000</strong>
+        <small>days, adjusted for misses</small>
+      </article>
+    </section>
+
+    <section class="history panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">YOUR JOURNEY</p>
+          <h2>Recent days</h2>
+        </div>
+        <span class="legend"><i class="dot good"></i> Success <i class="dot bad"></i> Miss</span>
+      </div>
+      <div id="historyList" class="history-list"></div>
+      <p id="emptyHistory" class="empty-state">Your story starts with your first check-in.</p>
+    </section>
+
+    <footer>
+      <p>Consistency over perfection.</p>
+      <p class="footer-small">Your entries stay on this device unless you export them.</p>
+      <button id="exportBtn" class="text-button">Export my data</button>
+    </footer>
+  </main>
+
+  <dialog id="settingsDialog" class="settings-dialog">
+    <form method="dialog" class="dialog-card">
+      <button class="dialog-close" aria-label="Close settings">×</button>
+      <p class="eyebrow">YOUR DATA</p>
+      <h2>Settings</h2>
+      <p class="muted">Your check-ins are saved in this browser on this device.</p>
+      <button type="button" id="exportFromSettings" class="secondary-button">Export check-ins (JSON)</button>
+      <button type="button" id="resetBtn" class="danger-button">Reset all progress</button>
+      <p class="fine-print">Resetting is permanent unless you exported a backup first.</p>
+    </form>
+  </dialog>
+
+  <script src="./app.js"></script>
+</body>
+</html>
